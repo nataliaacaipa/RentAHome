@@ -5,7 +5,7 @@
         <title>Tienda</title>
     </head>
     <body>
-        <h1>Admin de la tienda</h1>
+        <h1>Admin decn la tienda</h1>
         <h2>Consulta de usuarios</h2>
     </body>
 </html>
