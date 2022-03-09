@@ -1,0 +1,224 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Maven+Pro:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.oculto{
+    display: none;
+}
+
+.submit, button {
+    border: 0.1em solid #7f685a;
+    padding: 0.2em;
+    font-size: 1em;
+    background-color: #7f685ab2;
+    text-decoration: none;
+    color: white;
+}
+
+.submit:hover, button :hover{
+    font-weight: bold;
+}
+
+button a{
+    text-decoration: none;
+    color: white;
+}
+
+button a:hover{
+    font-weight: bold;
+}
+
+footer i {
+    font-size: 2.5em;
+    color: white;
+}
+
+footer div {
+    width: 25%;
+    display: inline-block;
+
+}
+
+.flecha {
+    width: 1em;
+    position: fixed;
+    bottom: 2em;
+    left: 2em;
+}
+
+
+body{
+    color: white;
+    font-size: 2em;
+    text-align: center;
+    background-color: #a79b98;
+
+}
+
+p, table{
+    font-family: 'Work Sans', sans-serif;
+    margin-top: 1em;
+}
+table{
+    margin-bottom: 5em;
+}
+
+#titleMenu{
+    width: 100%;
+}
+
+#title{
+    margin: 0;
+}
+
+#menu{
+    padding-top: 0;
+}
+
+#menu p{
+    padding-bottom: 1em;
+}
+
+
+
+header {
+    background-color: #b3a8a5c0;
+    width: 100%;
+    border-bottom: rgb(255, 255, 255) solid 1px;
+    position: fixed;
+    top: 0;
+    z-index: 999999999999999999;
+}
+
+.header {
+    width: 100%;
+    margin: auto;
+    padding: 0.5em 0.5em 0.5em 0.3em;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    align-content: center;
+    height: 60px;
+}
+
+header img{
+    width: 8em;
+}
+
+header h1{
+    color: white;
+    margin-top: 2.5em;
+    font-size: 1.2em;
+}
+
+
+section img{
+    padding: 0.5em;
+}
+
+section h1{
+    background-color:#a79b98 ;
+}
+
+section {
+    text-align: center;
+    padding: 3em 3em 2em 3em;
+    
+}
+
+section i {
+    font-size: 2.5em;
+    color: white;
+    padding: 0.5em 0 0.5em 0;
+}
+
+section i:hover{
+    font-size: 3em;
+    transition-property: font-size;
+    transition-duration: 0.5s;
+}
+
+section div {
+    width: 20%;
+    display: inline-block;
+    margin: 0 auto;
+    background-color: #7f685a3b;
+
+}
+
+div p{
+    font-family: 'Josefin Sans', sans-serif;
+    text-transform: uppercase;
+}
+
+
+h1{
+    margin-top: 2.5em;
+    text-shadow: -1px -1px 1px #7f685a, 1px -1px 1px #7f685a, -1px 1px 1px #7f685a, 1px 1px 1px #7f685a;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+form{
+    margin-top: 1em;
+}
+
+table{
+    text-align: center;
+    border: 0.1em solid white;
+    border-spacing: 1em;
+    margin: 0 auto;
+}
+
+
+#deleteID{
+    display: none;
+}
+#readID{
+    margin: 0;
+}
+
+@media screen and (max-width: 767px) {
+
+    section{
+        padding: 0;
+    }
+
+    section div{
+        width: 100%;
+        margin-top: 1em;
+        background-color: #a79b98;
+
+    }
+
+    section i{
+        font-size: 2em;
+    }
+    
+    section i:hover{
+        font-size: 2.5em;
+    }
+
+    footer i {
+        font-size: 2.5em;
+        color: white;
+    }
+    
+    footer div {
+        width: 25%;
+        display: inline-block;
+    
+    }
+    
+    .flecha {
+        width: 1em;
+        position: fixed;
+        bottom: 0.5em;
+        left: 1em;
+    }
+
+}
