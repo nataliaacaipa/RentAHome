@@ -8,15 +8,19 @@
         <title>Rent a house</title>
     </head>
     <body>
-        <h1>Iniciar sesión</h1>
-        <div class="divLogin">
+        <h1>Registro</h1>
+        <div class="divForm">
             <form class="form" action = "/login" method="POST">
+                <p>Nombre</p>
+                <input type="text" required="required">
+                <p>Apellido</p>
+                <input type="text" required="required">
                 <p>Correo electrónico</p>
                 <input type="text" name="mail" required="required">
                 <p>Contraseña</p>
                 <input type="password" name="password" required="required">
                 <br>
-                <input  type="submit" value="Iniciar sesión">
+                <input  type="submit" value="Registrar">
             </form>
         </div>
 

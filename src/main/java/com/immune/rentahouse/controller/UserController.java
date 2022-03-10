@@ -1,6 +1,7 @@
 package com.immune.rentahouse.controller;
 
 import com.immune.rentahouse.entity.Security;
+import com.immune.rentahouse.entity.User;
 import com.immune.rentahouse.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class UserController {
 
     @Autowired
-	private UserService loginService;
+	private UserService userService;
     
     @GetMapping("/")
     public ModelAndView home() {
@@ -24,12 +25,13 @@ public class UserController {
         return model;
     }
 
+	
 	//En cuanto un usuario trata de identificarse.
     @PostMapping("/login")
 	public ModelAndView login(@RequestParam String mail, @RequestParam String password) {
 		
 		//Recogemos la contraseña real del mail que nos ha dado el usuario en la base de datos.
-		String truePassword = loginService.getPassByMail(mail);
+		String truePassword = userService.getPassByMail(mail);
         
 		//Aqui encriptamos la contraseña que ha puesto el usuario para poder compararla con la truePassword tambien encriptada.
 		password = Security.encryptPassword(password);
@@ -51,6 +53,39 @@ public class UserController {
 	
 		}	
 	}
+	
+	@GetMapping("/register")
+	public ModelAndView register() {
+	
+		ModelAndView model = new ModelAndView("register");
+		return model;
+	}
+
+	@PostMapping("/index")
+    public ModelAndView create(User user) {
+        ModelAndView model = new ModelAndView("index");
+
+
+        if(user.getName()!=null && !user.getName().isEmpty() &&
+		    user.getLastname()!=null && !user.getLastname().isEmpty() &&
+			user.getMail()!=null && !user.getMail().isEmpty() &&
+			user.getPassword()!=null && !user.getPassword().isEmpty()){
+            User newUser = userService.saveUser(user);
+            model.addObject("newUser", newUser);
+
+            Boolean okay = true;
+            model.addObject("okay", okay);
+            return model;
+            
+        }else{
+            String aviso = "por favor incluye todos los campos necesarios";
+            model.addObject("aviso", aviso);
+
+            Boolean okay = false;
+            model.addObject("okay", okay);
+            return model;
+        }
+    }
 
 
 }

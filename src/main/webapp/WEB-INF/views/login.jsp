@@ -5,11 +5,11 @@
     <head>
         <meta charset="UTF-8">
         <link rel="stylesheet" type="text/css" href=" css/style.css">
-        <title>Rent a house</title>
+        <title>Rent a home</title>
     </head>
     <body>
         <h1>Iniciar sesión</h1>
-        <div class="divLogin">
+        <div class="divForm">
             <form class="form" action = "/login" method="POST">
                 <p>Correo electrónico</p>
                 <input type="text" name="mail" required="required">
@@ -18,6 +18,9 @@
                 <br>
                 <input  type="submit" value="Iniciar sesión">
             </form>
+        </div>
+        <div  id="register">
+            <p onclick="location.href='/register';" >Registrate</p>
         </div>
 
         <%
