@@ -1,3 +1,5 @@
+<%@ page contentType="text/html; charset=UTF-8" %>
+
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -6,15 +8,6 @@
         <title>Rent a house</title>
     </head>
     <body>
-        <h1>Admin decjhbuhun la tienda</h1>
-        <h2>Consulta de usuarios</h2>
-        <form class="form" action = "/login" method="POST">
-            <p>E-mail:</p>
-            <input type="text" name="mail" required="required">
-            <p>Contraseña:</p>
-            <input type="password" name="password" required="required">
-            <br>
-            <input  type="submit" value="Login">
-        </form>
+        <h2>:) has entrao</h2>
     </body>
 </html>
