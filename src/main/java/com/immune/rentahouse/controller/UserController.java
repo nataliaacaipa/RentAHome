@@ -57,13 +57,15 @@ public class UserController {
 	@GetMapping("/register")
 	public ModelAndView register() {
 	
+		Boolean b = true;
 		ModelAndView model = new ModelAndView("register");
+		model.addObject("b", b);
 		return model;
 	}
 
-	@PostMapping("/index")
+	@PostMapping("/register")
     public ModelAndView create(User user) {
-        ModelAndView model = new ModelAndView("index");
+        ModelAndView model = new ModelAndView("register");
 
 
         if(user.getName()!=null && !user.getName().isEmpty() &&
