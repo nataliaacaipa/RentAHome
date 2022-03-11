@@ -27,7 +27,7 @@ public class UserController {
 
 	
 	//En cuanto un usuario trata de identificarse.
-    @PostMapping("/login")
+    @PostMapping("/index")
 	public ModelAndView login(@RequestParam String mail, @RequestParam String password) {
 		
 		//Recogemos la contraseña real del mail que nos ha dado el usuario en la base de datos.
@@ -38,9 +38,13 @@ public class UserController {
 		
 		//Si la contraseña es correcta dejamos al usuario entrar a la pagina de inicio.
 		if (password.equals(truePassword)){
+			
+			//pasamos el nombre del usuario
+			String username = userService.getNamebyMail(mail);
 			//Definimos el modelo.
 			ModelAndView model = new ModelAndView("index");
 			model.addObject("respuesta", false);
+			model.addObject("username", username);
 			return model;	
 		}
 		//Si no es correcta comunicamos el error y dejamos al usuario intentarlo de nuevo.

@@ -9,5 +9,11 @@
     </head>
     <body>
         <h2>:) has entrao</h2>
+        <%
+        //Recupero los datos del usuario
+
+        String username = (String) request.getAttribute("username");%>
+        <p><%=username%></p>
+
     </body>
 </html>

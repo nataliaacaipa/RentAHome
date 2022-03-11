@@ -10,7 +10,7 @@
     <body>
         <h1>Iniciar sesión</h1>
         <div class="divForm">
-            <form class="form" action = "/login" method="POST">
+            <form class="form" action = "/index" method="POST">
                 <p>Correo electrónico</p>
                 <input type="email" name="mail" required="required">
                 <p>Contraseña</p>
