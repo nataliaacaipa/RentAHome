@@ -67,27 +67,28 @@ public class UserController {
     public ModelAndView create(User user) {
         ModelAndView model = new ModelAndView("register");
 
+		Boolean b = false;
+		model.addObject("b", b);
 
-        if(user.getName()!=null && !user.getName().isEmpty() &&
-		    user.getLastname()!=null && !user.getLastname().isEmpty() &&
-			user.getMail()!=null && !user.getMail().isEmpty() &&
-			user.getPassword()!=null && !user.getPassword().isEmpty()){
-            User newUser = userService.saveUser(user);
-            model.addObject("newUser", newUser);
+		String password = Security.encryptPassword(user.getPassword());
+		user.setPassword(password);
+		User newUser = userService.saveUser(user);
+		model.addObject("newUser", newUser);
 
-            Boolean okay = true;
-            model.addObject("okay", okay);
-            return model;
-            
-        }else{
-            String aviso = "por favor incluye todos los campos necesarios";
-            model.addObject("aviso", aviso);
+		Boolean okay = true;
+		model.addObject("okay", okay);
+		return model;
 
-            Boolean okay = false;
-            model.addObject("okay", okay);
-            return model;
-        }
     }
+
+	
+	@GetMapping("/index")
+    public ModelAndView index() {
+
+        ModelAndView model = new ModelAndView("index");
+        return model;
+    }
+
 
 
 }

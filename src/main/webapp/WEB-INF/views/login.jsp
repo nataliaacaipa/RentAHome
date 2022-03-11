@@ -12,12 +12,13 @@
         <div class="divForm">
             <form class="form" action = "/login" method="POST">
                 <p>Correo electrónico</p>
-                <input type="text" name="mail" required="required">
+                <input type="email" name="mail" required="required">
                 <p>Contraseña</p>
                 <input type="password" name="password" required="required">
                 <br>
                 <input  type="submit" value="Iniciar sesión">
             </form>
+
         </div>
         <div  id="register">
             <p onclick="location.href='/register';" >Registrate</p>
