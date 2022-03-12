@@ -45,6 +45,7 @@ public class UserController {
 			ModelAndView model = new ModelAndView("index");
 			model.addObject("respuesta", false);
 			model.addObject("username", username);
+
 			return model;	
 		}
 		//Si no es correcta comunicamos el error y dejamos al usuario intentarlo de nuevo.
@@ -83,14 +84,6 @@ public class UserController {
 		model.addObject("okay", okay);
 		return model;
 
-    }
-
-	
-	@GetMapping("/index")
-    public ModelAndView index() {
-
-        ModelAndView model = new ModelAndView("index");
-        return model;
     }
 
 

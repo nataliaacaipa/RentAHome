@@ -5,15 +5,34 @@
     <head>
         <meta charset="UTF-8">
         <link rel="stylesheet" type="text/css" href=" css/style.css">
+        <script src="http://code.jquery.com/jquery-latest.js"></script>
+        <script src="scripts.js"></script>
         <title>Rent a house</title>
     </head>
     <body>
         <h2>:) has entrao</h2>
         <%
         //Recupero los datos del usuario
-
         String username = (String) request.getAttribute("username");%>
         <p><%=username%></p>
+
+        <p>Datos a rellenar</p>
+        <div class="divForm">
+            <form class="form" action = "/index" method="POST">
+                <p>Número de teléfono</p>
+                <input type="tel" name="phonenum" pattern="[0-9]{9}" required="required">
+                <p>Ubicación</p>
+                <input type="text" name="lastname" required="required">
+                <p>Foto</p>
+                <input type="text" name="photo" required="required">
+                <br>
+                <input  type="submit" value="Añadir vivienda">
+            </form>
+
+        </div>
+        
+        
+
 
     </body>
 </html>
