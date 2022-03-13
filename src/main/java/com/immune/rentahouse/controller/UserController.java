@@ -87,6 +87,33 @@ public class UserController {
     }
 
 
+	@GetMapping("/housing")
+	public ModelAndView housing() {
+	
+		Boolean b = true;
+		ModelAndView model = new ModelAndView("hello");
+		model.addObject("b", b);
+		return model;
+	}
+
+	@PostMapping("/housing")
+    public ModelAndView newHouse() {
+        ModelAndView model = new ModelAndView("hello");
+
+		Boolean b = false;
+		model.addObject("b", b);
+
+		
+
+		Boolean okay = true;
+		model.addObject("okay", okay);
+		return model;
+
+    }
+
+	
+
+
 
 }
 

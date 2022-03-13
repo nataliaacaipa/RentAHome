@@ -10,7 +10,7 @@
         <title>Rent a house</title>
     </head>
     <body>
-        <h2>:) has entrao</h2>
+        <h2>:) holiii</h2>
         <%
         //Recupero los datos del usuario
         String username = (String) request.getAttribute("username");%>
