@@ -35,7 +35,7 @@
                 <p></p>
                 <p>Usuario agregado correctamente a la base de datos</p>
                 <p></p>
-                <button onclick="window.location.href='/index'">ir a index</button> 
+                <button onclick="window.location.href='/'">ir a inicio sesión</button> 
 
             <%}else{%> 
                 <%String aviso = (String) request.getAttribute("aviso");%>
