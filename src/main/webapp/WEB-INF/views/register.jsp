@@ -13,13 +13,13 @@
         if(b){%>  
             <h1>Registro</h1>
             <div class="divForm">
-                <form class="form" action = "/login" method="POST">
+                <form class="form" action = "/register" method="POST">
                     <p>Nombre</p>
-                    <input type="text" required="required">
+                    <input type="text" name="name" required="required">
                     <p>Apellido</p>
-                    <input type="text" required="required">
+                    <input type="text" name="lastname" required="required">
                     <p>Correo electrónico</p>
-                    <input type="text" name="mail" required="required">
+                    <input type="email" name="mail" required="required">
                     <p>Contraseña</p>
                     <input type="password" name="password" required="required">
                     <br>
@@ -35,7 +35,7 @@
                 <p></p>
                 <p>Usuario agregado correctamente a la base de datos</p>
                 <p></p>
-                <button><a href="/index" class="boton" >ir a index</a></button> 
+                <button onclick="window.location.href='/index'">ir a index</button> 
 
             <%}else{%> 
                 <%String aviso = (String) request.getAttribute("aviso");%>

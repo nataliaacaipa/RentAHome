@@ -27,7 +27,7 @@ public class UserController {
 
 	
 	//En cuanto un usuario trata de identificarse.
-    @PostMapping("/login")
+    @PostMapping("/index")
 	public ModelAndView login(@RequestParam String mail, @RequestParam String password) {
 		
 		//Recogemos la contraseña real del mail que nos ha dado el usuario en la base de datos.
@@ -38,9 +38,14 @@ public class UserController {
 		
 		//Si la contraseña es correcta dejamos al usuario entrar a la pagina de inicio.
 		if (password.equals(truePassword)){
+			
+			//pasamos el nombre del usuario
+			String username = userService.getNamebyMail(mail);
 			//Definimos el modelo.
 			ModelAndView model = new ModelAndView("index");
 			model.addObject("respuesta", false);
+			model.addObject("username", username);
+
 			return model;	
 		}
 		//Si no es correcta comunicamos el error y dejamos al usuario intentarlo de nuevo.
@@ -67,27 +72,47 @@ public class UserController {
     public ModelAndView create(User user) {
         ModelAndView model = new ModelAndView("register");
 
+		Boolean b = false;
+		model.addObject("b", b);
 
-        if(user.getName()!=null && !user.getName().isEmpty() &&
-		    user.getLastname()!=null && !user.getLastname().isEmpty() &&
-			user.getMail()!=null && !user.getMail().isEmpty() &&
-			user.getPassword()!=null && !user.getPassword().isEmpty()){
-            User newUser = userService.saveUser(user);
-            model.addObject("newUser", newUser);
+		String password = Security.encryptPassword(user.getPassword());
+		user.setPassword(password);
+		User newUser = userService.saveUser(user);
+		model.addObject("newUser", newUser);
 
-            Boolean okay = true;
-            model.addObject("okay", okay);
-            return model;
-            
-        }else{
-            String aviso = "por favor incluye todos los campos necesarios";
-            model.addObject("aviso", aviso);
+		Boolean okay = true;
+		model.addObject("okay", okay);
+		return model;
 
-            Boolean okay = false;
-            model.addObject("okay", okay);
-            return model;
-        }
     }
+
+
+	@GetMapping("/housing")
+	public ModelAndView housing() {
+	
+		Boolean b = true;
+		ModelAndView model = new ModelAndView("hello");
+		model.addObject("b", b);
+		return model;
+	}
+
+	@PostMapping("/housing")
+    public ModelAndView newHouse() {
+        ModelAndView model = new ModelAndView("hello");
+
+		Boolean b = false;
+		model.addObject("b", b);
+
+		
+
+		Boolean okay = true;
+		model.addObject("okay", okay);
+		return model;
+
+    }
+
+	
+
 
 
 }
