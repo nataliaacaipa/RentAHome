@@ -21,7 +21,6 @@ public class UserService {
 		return userRepository.getNameByMail(mail);
 	}
 
-
 	//guarda un usuario
 	public User saveUser(User user){
 		return userRepository.save(user);
