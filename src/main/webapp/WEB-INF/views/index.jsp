@@ -32,7 +32,7 @@
                 <input type="text" name="photo" required="required">
                 <br>
 
-                <input type="number" value="<%=user.getId()%>" name="id">
+                <input type="number" value="<%=user.getId()%>" name="id_lessee">
 
                 <input  type="submit" value="Añadir vivienda">
             </form>
