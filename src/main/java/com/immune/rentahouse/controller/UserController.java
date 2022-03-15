@@ -7,6 +7,7 @@ import com.immune.rentahouse.entity.Lessee;
 import com.immune.rentahouse.entity.Security;
 import com.immune.rentahouse.entity.User;
 import com.immune.rentahouse.service.HousingService;
+import com.immune.rentahouse.service.LesseeService;
 import com.immune.rentahouse.service.UserService;
 
 import org.hibernate.exception.ConstraintViolationException;
@@ -26,6 +27,9 @@ public class UserController {
 	
 	@Autowired
 	private HousingService housingService;
+
+	@Autowired
+	private LesseeService lesseeService;
     
     @GetMapping("/")
     public ModelAndView home() {
@@ -57,9 +61,12 @@ public class UserController {
 
 			//Definimos el modelo.
 			ModelAndView model = new ModelAndView("index");
-			model.addObject("respuesta", false);
+			model.addObject("b", true);
 			model.addObject("username", username);
 			model.addObject("user", user);
+			model.addObject("lesseeService", lesseeService);
+			model.addObject("housingService", housingService);
+
 
 			return model;	
 		}
@@ -67,7 +74,7 @@ public class UserController {
 		else{
 			//Lanzamos pantalla de log in.
 			ModelAndView model = new ModelAndView("login");
-			model.addObject("respuesta", true);
+			model.addObject("b", false);
 			return model;	
 
 	
@@ -122,14 +129,17 @@ public class UserController {
 	}
 
 	@PostMapping("/housing")
-    public ModelAndView newHouse(@RequestParam int phonenum, @RequestParam int id_user, @RequestParam String location, @RequestParam String photo) { //Nose si introducir por parametro el id_lessee
+    public ModelAndView newHouse(@RequestParam int phonenum, @RequestParam String location, @RequestParam String photo) { //Nose si introducir por parametro el id_lessee
         ModelAndView model = new ModelAndView("hello");
 
 		Lessee lessee = new Lessee();
-		lessee.set
+		lessee.setPhonenum(phonenum);
+		model.addObject("lessee", lessee);
 
-		//Housing housing = new Housing();
-		//housing.setId_Lessee();
+		Housing housing = new Housing();
+		housing.setLocation(location);
+		housing.setPhoto(photo);
+		model.addObject("housing", housing);
 
 		//housingService.save(housing);
 
