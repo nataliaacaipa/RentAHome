@@ -142,20 +142,8 @@ public class UserController {
 
     }
 
-	//Cambio
+	//Cambioo
 
-	/*@PostMapping("/")
-    public ModelAndView newLess(@RequestParam int phonenum) { //Nose si introducir por parametro el id_lessee
-        ModelAndView model = new ModelAndView("hello");
-
-		Boolean b = false;
-		model.addObject("b", b);
-
-		Boolean okay = true;
-		model.addObject("okay", okay);
-		return model;
-
-    }*/
 
 
 }
