@@ -9,6 +9,7 @@
         <script src="scripts.js"></script>
         <title>Rent a house</title>
     </head>
+
     <body>
         <div class="search" >
             <form action="../../form-result.php" method="post" target="_blank">
@@ -29,6 +30,8 @@
             <option value="casa3">
 
             <option value="casa4">
+
+           
 
             </datalist>
         </div>  
