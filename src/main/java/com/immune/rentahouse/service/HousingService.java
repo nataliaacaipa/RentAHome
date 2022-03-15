@@ -14,8 +14,9 @@ public class HousingService {
     public Iterable<Housing> getHouses() {
         return housingRepository.findAll();
     }
-    /*public Housing save(User user){
-		return userRepository.save(user);
-	}*/
+
+    public Housing save(Housing housing){
+		return housingRepository.save(housing);
+	}
 
 }
