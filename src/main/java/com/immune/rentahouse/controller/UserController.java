@@ -121,7 +121,7 @@ public class UserController {
 	}
 
 	@PostMapping("/housing")
-    public ModelAndView newHouse(@RequestParam int id) {
+    public ModelAndView newHouse(@RequestParam int id, @RequestParam String location, @RequestParam String photo ) { //Nose si introducir por parametro el id_lessee
         ModelAndView model = new ModelAndView("hello");
 
 		Boolean b = false;

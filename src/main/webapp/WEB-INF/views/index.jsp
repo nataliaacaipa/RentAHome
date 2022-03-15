@@ -31,6 +31,9 @@
                 <p>Foto</p>
                 <input type="text" name="photo" required="required">
                 <br>
+
+                <input type="number" value="<%=user.getId()%>" name="id">
+
                 <input  type="submit" value="Añadir vivienda">
             </form>
 

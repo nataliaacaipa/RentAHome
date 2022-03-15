@@ -18,8 +18,6 @@
 
             <input type="submit" value="Search"></p>
 
-            </p>
-
             </form>
 
             <datalist id="listacasas">
@@ -35,6 +33,7 @@
             </datalist>
         </div>  
 
+         <button onclick="window.location.href='/register'">ir a Registro</button> 
 
     </body>
 </html>
