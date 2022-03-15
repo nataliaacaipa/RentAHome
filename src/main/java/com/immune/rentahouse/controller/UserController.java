@@ -146,7 +146,7 @@ public class UserController {
 		Boolean b = false;
 		model.addObject("b", b);
 
-		ArrayList<Housing> alHouses = (ArrayList<Housing>) housingService.getHouses();
+		//ArrayList<Housing> alHouses = (ArrayList<Housing>) housingService.getHouses();
 
 		Boolean okay = true;
 		model.addObject("okay", okay);
