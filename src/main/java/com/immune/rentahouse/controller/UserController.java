@@ -4,6 +4,7 @@ import com.immune.rentahouse.entity.Security;
 import com.immune.rentahouse.entity.User;
 import com.immune.rentahouse.service.UserService;
 
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -70,19 +71,29 @@ public class UserController {
 
 	@PostMapping("/register")
     public ModelAndView create(User user) {
-        ModelAndView model = new ModelAndView("register");
 
+		ModelAndView model = new ModelAndView("register");
 		Boolean b = false;
 		model.addObject("b", b);
-
-		String password = Security.encryptPassword(user.getPassword());
-		user.setPassword(password);
-		User newUser = userService.saveUser(user);
-		model.addObject("newUser", newUser);
-
-		Boolean okay = true;
-		model.addObject("okay", okay);
-		return model;
+		
+		try {
+			ModelAndView modelL = new ModelAndView("login");
+	
+			String password = Security.encryptPassword(user.getPassword());
+			user.setPassword(password);
+			User newUser = userService.saveUser(user);
+			modelL.addObject("newUser", newUser);
+	
+			Boolean okay = true;
+			modelL.addObject("okay", okay);
+			return modelL;
+			
+		} catch (Exception e) {
+			Boolean okay = false;
+			model.addObject("okay", okay);
+			return model;
+			//TODO: handle exception
+		}
 
     }
 

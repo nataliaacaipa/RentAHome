@@ -38,9 +38,9 @@
                 <button onclick="window.location.href='/'">ir a inicio sesión</button> 
 
             <%}else{%> 
-                <%String aviso = (String) request.getAttribute("aviso");%>
-                <p><%=aviso%></p>
+                <p>Error, inténtalo de nuevo.</p>
                 <p></p>
+                <button onclick="window.location.href='/register'">ir a Registro</button> 
 
             <%}%>
         <%}%>
