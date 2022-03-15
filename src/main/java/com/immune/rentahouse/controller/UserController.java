@@ -3,6 +3,7 @@ package com.immune.rentahouse.controller;
 import java.util.ArrayList;
 
 import com.immune.rentahouse.entity.Housing;
+import com.immune.rentahouse.entity.Lessee;
 import com.immune.rentahouse.entity.Security;
 import com.immune.rentahouse.entity.User;
 import com.immune.rentahouse.service.HousingService;
@@ -121,8 +122,11 @@ public class UserController {
 	}
 
 	@PostMapping("/housing")
-    public ModelAndView newHouse(@RequestParam int id, @RequestParam String location, @RequestParam String photo) { //Nose si introducir por parametro el id_lessee
+    public ModelAndView newHouse(@RequestParam int phonenum, @RequestParam int id_user, @RequestParam String location, @RequestParam String photo) { //Nose si introducir por parametro el id_lessee
         ModelAndView model = new ModelAndView("hello");
+
+		Lessee lessee = new Lessee();
+		lessee.set
 
 		//Housing housing = new Housing();
 		//housing.setId_Lessee();
