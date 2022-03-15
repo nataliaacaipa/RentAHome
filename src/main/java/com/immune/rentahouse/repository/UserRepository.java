@@ -23,9 +23,6 @@ public interface UserRepository extends JpaRepository<User, Integer>{
     @Query(value= "SELECT * FROM user WHERE mail=?1", nativeQuery = true)    
     public User getUserByMail(String mail);
 
-    @Modifying
-    @Query(value = "INSERT INTO lessee (name, lastname, mail, password, phonenum, id_user) SELECT name, lastname, mail, password, ?1 , id FROM user WHERE id = ?2", nativeQuery = true )
-    public void newLessee(String phonenum, int id);
 
 
 }
