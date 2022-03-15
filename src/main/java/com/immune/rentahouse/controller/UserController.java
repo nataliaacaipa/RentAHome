@@ -52,6 +52,8 @@ public class UserController {
 		
 		//Si la contraseña es correcta dejamos al usuario entrar a la pagina de inicio.
 		if (password.equals(truePassword)){
+
+			
 			
 			//pasamos el nombre entero del usuario
 			String username = userService.getNamebyMail(mail);
@@ -60,7 +62,11 @@ public class UserController {
 			User user = userService.getUserByMail(mail);
 
 			//Definimos el modelo.
-			ModelAndView model = new ModelAndView("index");
+			ModelAndView model = new ModelAndView("hello");
+			Iterable<Housing> houses = (Iterable<Housing>) housingService.getHouses();
+
+			model.addObject("houses", houses);	
+
 			model.addObject("b", true);
 			model.addObject("username", username);
 			model.addObject("user", user);
@@ -75,6 +81,7 @@ public class UserController {
 			//Lanzamos pantalla de log in.
 			ModelAndView model = new ModelAndView("login");
 			model.addObject("b", false);
+			model.addObject("respuesta", true);
 			return model;	
 
 	
@@ -146,12 +153,24 @@ public class UserController {
 		Boolean b = false;
 		model.addObject("b", b);
 
-		//ArrayList<Housing> alHouses = (ArrayList<Housing>) housingService.getHouses();
+		Iterable<Housing> houses = (Iterable<Housing>) housingService.getHouses();
+
+		model.addObject("houses", houses);	
+
 
 		Boolean okay = true;
 		model.addObject("okay", okay);
 		return model;
 
+    }
+
+	@PostMapping("/house")
+    public ModelAndView houses() {
+		Iterable<Housing> houses = (Iterable<Housing>) housingService.getHouses();
+
+        ModelAndView model = new ModelAndView("hello");
+		model.addObject("houses", houses);	
+        return model;
     }
 
 	//Cambioo

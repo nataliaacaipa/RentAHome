@@ -1,3 +1,5 @@
+<%@ page import = "com.immune.rentahouse.entity.Housing"%>
+
 <%@ page contentType="text/html; charset=UTF-8" %>
 
 <!DOCTYPE html>
@@ -12,7 +14,7 @@
 
     <body>
         <div class="search" >
-            <form action="../../form-result.php" method="post" target="_blank">
+            <form action="/house" method="post" >
             <p>
 
             <input type="search" name="campobusqueda" list="listacasas">
@@ -21,17 +23,15 @@
 
             </form>
 
+            <%Iterable<Housing> houses = (Iterable<Housing>) request.getAttribute("houses"); %>
+
+            <%for(Housing house : houses){%>
+
             <datalist id="listacasas">
 
-            <option value="casa1">
+            <option value="<%=house.getLocation()%>">
 
-            <option value="casa2">
-
-            <option value="casa3">
-
-            <option value="casa4">
-
-           
+            <%}%>
 
             </datalist>
         </div>  

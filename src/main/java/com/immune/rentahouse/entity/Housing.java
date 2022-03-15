@@ -16,32 +16,34 @@ public class Housing {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
    
+    public Integer getId() {
+        return id;
+    }
+    public void setId(Integer id) {
+        this.id = id;
+    }
+    public String getLocation() {
+        return location;
+    }
+    public void setLocation(String location) {
+        this.location = location;
+    }
+    public String getPhoto() {
+        return photo;
+    }
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+    public int getId_lessee() {
+        return id_lessee;
+    }
+    public void setId_lessee(int id_lessee) {
+        this.id_lessee = id_lessee;
+    }
     private String location;
     private String photo;
     private int id_lessee;
 
-    public void setLocation(String location) {
-        this.location = location;
-    }
 
-    public void getLocation(String location) {
-        this.location = location;
-    }
-
-    public void setPhoto(String photo) {
-        this.photo = photo;
-    }
-
-    public void getPhoto(String photo) {
-        this.photo = photo;
-    }
-
-    public int getId_Leesse() {
-        return id_lessee;
-    }
-
-    public void setId_Lessee(int id_lessee) {
-        this.id_lessee = id_lessee;
-    }
 
 }

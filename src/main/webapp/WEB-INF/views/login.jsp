@@ -21,7 +21,7 @@
 
         </div>
         <div  id="register">
-            <p onclick="location.href='/register';" >Registrate</p>
+         <button onclick="window.location.href='/register'">Registrate</button> 
         </div>
 
         <%

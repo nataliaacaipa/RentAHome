@@ -81,10 +81,10 @@ input:invalid:focus {
 
 
 .submit, button {
-    border: 0.1em solid #7f685a;
+    border: 0.1em solid #4c93af;
     padding: 0.2em;
-    font-size: 1em;
-    background-color: #7f685ab2;
+    font-size:  0.8em;
+    background-color: #4c93af;
     text-decoration: none;
     color: white;
 }

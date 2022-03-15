@@ -23,9 +23,7 @@
         User user = (User) request.getAttribute("user");
 
         if(b){%> 
-            <h2>:) has entrao</h2>
             <p>Datos a rellenar</p>
-            <p><%=user.getId()%></p>
             <div class="divForm">
                 <form class="form" action = "/housing" method="POST">
                     <p>Número de teléfono</p>
@@ -66,11 +64,11 @@
 
             lesseeRepository.save(lessee);
 
-            housing.setId_Lessee(lessee.getId());
+            housing.setId_lessee(lessee.getId());
 
             housingRepository.save(housing);
 
-            %>
+        }%>
 
 
 
