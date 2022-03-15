@@ -36,7 +36,7 @@
             </datalist>
         </div>  
 
-         <button onclick="window.location.href='/register'">ir a Registro</button> 
+         <button onclick="window.location.href='/'">ir a inicio</button> 
 
     </body>
 </html>

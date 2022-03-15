@@ -15,7 +15,11 @@ public class HousingService {
         return housingRepository.findAll();
     }
 
+<<<<<<< HEAD
     /*public Housing save(Housing housing){
+=======
+    public Housing saveHousing(Housing housing){
+>>>>>>> c344c44ee0cb0b8cd9590981b1bf650d21515245
 		return housingRepository.save(housing);
 	}*/
 
