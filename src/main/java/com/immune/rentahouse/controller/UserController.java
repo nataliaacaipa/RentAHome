@@ -1,9 +1,14 @@
 package com.immune.rentahouse.controller;
 
+import java.util.ArrayList;
+
+import com.immune.rentahouse.entity.Housing;
 import com.immune.rentahouse.entity.Security;
 import com.immune.rentahouse.entity.User;
+import com.immune.rentahouse.service.HousingService;
 import com.immune.rentahouse.service.UserService;
 
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,6 +22,9 @@ public class UserController {
 
     @Autowired
 	private UserService userService;
+	
+	@Autowired
+	private HousingService housingService;
     
     @GetMapping("/")
     public ModelAndView home() {
@@ -24,6 +32,7 @@ public class UserController {
         ModelAndView model = new ModelAndView("login");
         return model;
     }
+
 
 	
 	//En cuanto un usuario trata de identificarse.
@@ -39,12 +48,17 @@ public class UserController {
 		//Si la contraseña es correcta dejamos al usuario entrar a la pagina de inicio.
 		if (password.equals(truePassword)){
 			
-			//pasamos el nombre del usuario
+			//pasamos el nombre entero del usuario
 			String username = userService.getNamebyMail(mail);
+
+			//recogemos el usuario 
+			User user = userService.getUserByMail(mail);
+
 			//Definimos el modelo.
 			ModelAndView model = new ModelAndView("index");
 			model.addObject("respuesta", false);
 			model.addObject("username", username);
+			model.addObject("user", user);
 
 			return model;	
 		}
@@ -70,19 +84,29 @@ public class UserController {
 
 	@PostMapping("/register")
     public ModelAndView create(User user) {
-        ModelAndView model = new ModelAndView("register");
 
+		ModelAndView model = new ModelAndView("register");
 		Boolean b = false;
 		model.addObject("b", b);
-
-		String password = Security.encryptPassword(user.getPassword());
-		user.setPassword(password);
-		User newUser = userService.saveUser(user);
-		model.addObject("newUser", newUser);
-
-		Boolean okay = true;
-		model.addObject("okay", okay);
-		return model;
+		
+		try {
+			ModelAndView modelL = new ModelAndView("login");
+	
+			String password = Security.encryptPassword(user.getPassword());
+			user.setPassword(password);
+			User newUser = userService.saveUser(user);
+			modelL.addObject("newUser", newUser);
+	
+			Boolean okay = true;
+			modelL.addObject("okay", okay);
+			return modelL;
+			
+		} catch (Exception e) {
+			Boolean okay = false;
+			model.addObject("okay", okay);
+			return model;
+			//TODO: handle exception
+		}
 
     }
 
@@ -97,13 +121,13 @@ public class UserController {
 	}
 
 	@PostMapping("/housing")
-    public ModelAndView newHouse() {
+    public ModelAndView newHouse(@RequestParam int id) {
         ModelAndView model = new ModelAndView("hello");
 
 		Boolean b = false;
 		model.addObject("b", b);
 
-		
+		ArrayList<Housing> alHouses = (ArrayList<Housing>) housingService.getHouses();
 
 		Boolean okay = true;
 		model.addObject("okay", okay);
