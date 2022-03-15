@@ -10,11 +10,11 @@
         <title>Rent a house</title>
     </head>
     <body>
-        <div class="divForm">
+        <div class="search" >
             <form action="../../form-result.php" method="post" target="_blank">
             <p>
 
-            Buscar casa: <input type="search" name="campobusqueda" list="listacasas">
+            <input type="search" name="campobusqueda" list="listacasas">
 
             <input type="submit" value="Search"></p>
 
