@@ -10,28 +10,30 @@
         <title>Rent a house</title>
     </head>
     <body>
-        <h2>:) holiii</h2>
-        <%
-        //Recupero los datos del usuario
-        String username = (String) request.getAttribute("username");%>
-        <p><%=username%></p>
-
-        <p>Datos a rellenar</p>
         <div class="divForm">
-            <form class="form" action = "/index" method="POST">
-                <p>Número de teléfono</p>
-                <input type="tel" name="phonenum" pattern="[0-9]{9}" required="required">
-                <p>Ubicación</p>
-                <input type="text" name="location" required="required">
-                <p>Foto</p>
-                <input type="text" name="photo" required="required">
-                <br>
-                <input  type="submit" value="Añadir vivienda">
+            <form action="../../form-result.php" method="post" target="_blank">
+            <p>
+
+            Buscar casa: <input type="search" name="campobusqueda" list="listacasas">
+
+            <input type="submit" value="Search"></p>
+
+            </p>
+
             </form>
 
-        </div>
-        
-        
+            <datalist id="listacasas">
+
+            <option value="casa1">
+
+            <option value="casa2">
+
+            <option value="casa3">
+
+            <option value="casa4">
+
+            </datalist>
+        </div>  
 
 
     </body>

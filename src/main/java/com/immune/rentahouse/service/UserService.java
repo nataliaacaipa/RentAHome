@@ -1,5 +1,6 @@
 package com.immune.rentahouse.service;
 
+import com.immune.rentahouse.entity.Housing;
 import com.immune.rentahouse.entity.User;
 import com.immune.rentahouse.repository.UserRepository;
 
@@ -24,6 +25,15 @@ public class UserService {
 	//guarda un usuario
 	public User saveUser(User user){
 		return userRepository.save(user);
+	}
+
+	public int getIDByMail(String mail){
+		return userRepository.getIDByMail(mail);
+	}
+
+
+	public User getUserByMail(String mail){
+		return userRepository.getUserByMail(mail);
 	}
 
 

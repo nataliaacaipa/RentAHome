@@ -1,7 +1,11 @@
 package com.immune.rentahouse.controller;
 
+import java.util.ArrayList;
+
+import com.immune.rentahouse.entity.Housing;
 import com.immune.rentahouse.entity.Security;
 import com.immune.rentahouse.entity.User;
+import com.immune.rentahouse.service.HousingService;
 import com.immune.rentahouse.service.UserService;
 
 import org.hibernate.exception.ConstraintViolationException;
@@ -18,6 +22,9 @@ public class UserController {
 
     @Autowired
 	private UserService userService;
+	
+	@Autowired
+	private HousingService housingService;
     
     @GetMapping("/")
     public ModelAndView home() {
@@ -25,6 +32,7 @@ public class UserController {
         ModelAndView model = new ModelAndView("login");
         return model;
     }
+
 
 	
 	//En cuanto un usuario trata de identificarse.
@@ -40,12 +48,17 @@ public class UserController {
 		//Si la contraseña es correcta dejamos al usuario entrar a la pagina de inicio.
 		if (password.equals(truePassword)){
 			
-			//pasamos el nombre del usuario
+			//pasamos el nombre entero del usuario
 			String username = userService.getNamebyMail(mail);
+
+			//recogemos el usuario 
+			User user = userService.getUserByMail(mail);
+
 			//Definimos el modelo.
-			ModelAndView model = new ModelAndView("index");
+			ModelAndView model = new ModelAndView("hello");
 			model.addObject("respuesta", false);
 			model.addObject("username", username);
+			model.addObject("user", user);
 
 			return model;	
 		}
@@ -108,13 +121,13 @@ public class UserController {
 	}
 
 	@PostMapping("/housing")
-    public ModelAndView newHouse() {
+    public ModelAndView newHouse(@RequestParam int id) {
         ModelAndView model = new ModelAndView("hello");
 
 		Boolean b = false;
 		model.addObject("b", b);
 
-		
+		ArrayList<Housing> alHouses = (ArrayList<Housing>) housingService.getHouses();
 
 		Boolean okay = true;
 		model.addObject("okay", okay);
