@@ -12,5 +12,5 @@ public class MainApplication {
 		SpringApplication.run(MainApplication.class, args);	
 	}
 
-	//prueba1
+	//prueba2
 }
