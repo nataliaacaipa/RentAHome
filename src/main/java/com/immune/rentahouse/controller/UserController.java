@@ -122,14 +122,12 @@ public class UserController {
 
 	@PostMapping("/housing")
     public ModelAndView newHouse(@RequestParam int id, @RequestParam String location, @RequestParam String photo) { //Nose si introducir por parametro el id_lessee
-
-
         ModelAndView model = new ModelAndView("hello");
 
-		Housing housing = new Housing();
+		//Housing housing = new Housing();
 		//housing.setId_Lessee();
 
-		housingService.save(housing);
+		//housingService.save(housing);
 
 		Boolean b = false;
 		model.addObject("b", b);
@@ -143,6 +141,20 @@ public class UserController {
     }
 
 	//Cambioo
+
+
+	/*@PostMapping("/")
+    public ModelAndView newLess(@RequestParam int phonenum) { //Nose si introducir por parametro el id_lessee
+        ModelAndView model = new ModelAndView("hello");
+
+		Boolean b = false;
+		model.addObject("b", b);
+
+		Boolean okay = true;
+		model.addObject("okay", okay);
+		return model;
+
+    }*/
 
 
 
