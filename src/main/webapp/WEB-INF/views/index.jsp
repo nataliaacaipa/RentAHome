@@ -1,9 +1,10 @@
 <%@ page import = "com.immune.rentahouse.entity.User"%>
 <%@ page import = "com.immune.rentahouse.entity.Lessee"%>
 <%@ page import = "com.immune.rentahouse.service.LesseeService"%>
-
+<%@ page import = "com.immune.rentahouse.repository.LesseeRepository"%>
 <%@ page import = "com.immune.rentahouse.entity.Housing"%>
 <%@ page import = "com.immune.rentahouse.service.HousingService"%>
+<%@ page import = "com.immune.rentahouse.repository.HousingRepository"%>
 
 
 <%@ page contentType="text/html; charset=UTF-8" %>
@@ -48,8 +49,12 @@
             String username = (String) request.getAttribute("username");
             Lessee lessee = (Lessee) request.getAttribute("lessee");
             Housing housing = (Housing) request.getAttribute("housing");
-            LesseeService lesseeService = (LesseeService) request.getAttribute("lesseeService");
-            HousingService housingService = (HousingService) request.getAttribute("housingService");
+            //LesseeService lesseeService = (LesseeService) request.getAttribute("lesseeService");
+            //HousingService housingService = (HousingService) request.getAttribute("housingService");
+
+            LesseeRepository lesseeRepository = (LesseeRepository) request.getAttribute("lesseeRepository");
+            HousingRepository housingRepository = (HousingRepository) request.getAttribute("housingRepository");
+
 
 
 
@@ -59,12 +64,13 @@
             lessee.setPassword(user.getPassword());
             lessee.setId_user(user.getId());
 
-            lesseeService.saveLessee(lessee);
+            lesseeRepository.save(lessee);
 
             housing.setId_Lessee(lessee.getId());
 
-            housingService.saveHousing(housing);
+            housingRepository.save(housing);
 
             %>
+
     </body>
 </html>
