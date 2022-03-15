@@ -11,6 +11,9 @@ public class MainApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(MainApplication.class, args);	
 	}
+<<<<<<< HEAD
 
 	//prueba2
+=======
+>>>>>>> dc665c879e60823e982e0272babafc6796b6a433
 }

@@ -42,6 +42,17 @@ input, select {
     border-radius: 4px;
     box-sizing: border-box;
   }
+
+.search input, select{
+    width: 40%;
+}
+
+.search input[type=submit]{
+    width: 6em;
+    padding: 12px 20px;
+
+
+}
   
 input[type=submit] {
 width: 100%;

@@ -1,3 +1,4 @@
+<%@ page import = "com.immune.rentahouse.entity.User"%>
 <%@ page contentType="text/html; charset=UTF-8" %>
 
 <!DOCTYPE html>
@@ -13,12 +14,16 @@
         <h2>:) has entrao</h2>
         <%
         //Recupero los datos del usuario
-        String username = (String) request.getAttribute("username");%>
+        String username = (String) request.getAttribute("username");
+        User user = (User) request.getAttribute("user");
+        %>
         <p><%=username%></p>
+        <p><%=user.getId()%></p>
+
 
         <p>Datos a rellenar</p>
         <div class="divForm">
-            <form class="form" action = "/index" method="POST">
+            <form class="form" action = "/housing" method="POST">
                 <p>Número de teléfono</p>
                 <input type="tel" name="phonenum" pattern="[0-9]{9}" required="required">
                 <p>Ubicación</p>
@@ -30,9 +35,6 @@
             </form>
 
         </div>
-        
-        
-
 
     </body>
 </html>
