@@ -66,15 +66,5 @@
             housingService.saveHousing(housing);
 
             %>
-
-
-<<<<<<< HEAD
-            
-
-        </div>
-=======
-        <%}%>
->>>>>>> c344c44ee0cb0b8cd9590981b1bf650d21515245
-
     </body>
 </html>
