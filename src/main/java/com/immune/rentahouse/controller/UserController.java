@@ -53,7 +53,7 @@ public class UserController {
 		//Si la contraseña es correcta dejamos al usuario entrar a la pagina de inicio.
 		if (password.equals(truePassword)){
 
-			
+
 			
 			//pasamos el nombre entero del usuario
 			String username = userService.getNamebyMail(mail);
@@ -66,6 +66,8 @@ public class UserController {
 			Iterable<Housing> houses = (Iterable<Housing>) housingService.getHouses();
 
 			model.addObject("houses", houses);	
+			model.addObject("ok", true);
+			model.addObject("okay", true);
 
 			model.addObject("b", true);
 			model.addObject("username", username);
@@ -164,18 +166,44 @@ public class UserController {
 
     }
 
+	/*
+	@GetMapping("/house")
+    public ModelAndView house() {
+		
+		ModelAndView model = new ModelAndView("hello");
+		model.addObject("okay", true);
+
+        return model;
+    }*/
+
 	@PostMapping("/house")
     public ModelAndView houses(@RequestParam String location) {
 		Iterable<Housing> houses = (Iterable<Housing>) housingService.getHouses();
-		String dataHouse = (String) housingService.dataHouse(location);
+		ModelAndView model = new ModelAndView("hello");
+		model.addObject("okay", false);
 
-		String[] houseData = dataHouse.split(",");
-		//System.out.println(alHouse[2]);
+		
+		if(location!=null){
+			
+			String dataHouse = (String) housingService.dataHouse(location);
+			String[] houseData = dataHouse.split(",");
+			System.out.println(houseData[3]);
 
-        ModelAndView model = new ModelAndView("hello");
-		model.addObject("houses", houses);	
-		model.addObject("houseData", houseData);
-        return model;
+			String locationHouse = location;
+			model.addObject("houses", houses);
+			model.addObject("houseData", houseData);
+			model.addObject("locationHouse", locationHouse);
+			model.addObject("b", true);
+
+			return model;
+		}else{
+			model.addObject("b", false);
+
+			return model;
+		}
+
+		
+
     }
 
 	//Cambioo

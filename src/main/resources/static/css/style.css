@@ -74,10 +74,6 @@ input:invalid:focus {
     background-image: linear-gradient(rgb(233, 207, 212), rgb(230, 215, 215));
   }
 
-.oculto{
-    display: none;
-}
-
 
 
 .submit, button {
@@ -91,6 +87,42 @@ input:invalid:focus {
 
 .submit:hover, button :hover{
     font-weight: bold;
+}
+
+.todo {
+    width: 70%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    align-content: center;
+
+}
+
+.info, .foto{
+    width: 100%;
+}
+
+.foto{
+    padding-left: 15em;
+    width: 60em;
+    height: 16em;
+}
+
+.imagen{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+}
+
+.info{
+    padding-right: 10em;
+}
+
+h3{
+    font-family: 'League Spartan', sans-serif;
+    color: #51575a;
 }
 
 button a{
