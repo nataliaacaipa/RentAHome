@@ -165,11 +165,16 @@ public class UserController {
     }
 
 	@PostMapping("/house")
-    public ModelAndView houses() {
+    public ModelAndView houses(@RequestParam String location) {
 		Iterable<Housing> houses = (Iterable<Housing>) housingService.getHouses();
+		String dataHouse = (String) housingService.dataHouse(location);
+
+		String[] houseData = dataHouse.split(",");
+		//System.out.println(alHouse[2]);
 
         ModelAndView model = new ModelAndView("hello");
 		model.addObject("houses", houses);	
+		model.addObject("houseData", houseData);
         return model;
     }
 

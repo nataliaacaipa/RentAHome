@@ -17,13 +17,15 @@
             <form action="/house" method="post" >
             <p>
 
-            <input type="search" name="campobusqueda" list="listacasas">
+            <input type="search" name="location" list="listacasas">
 
             <input type="submit" value="Search"></p>
 
             </form>
 
-            <%Iterable<Housing> houses = (Iterable<Housing>) request.getAttribute("houses"); %>
+            <%Iterable<Housing> houses = (Iterable<Housing>) request.getAttribute("houses"); 
+            String[] houseData = (String[]) request.getAttribute("houseData");
+            %>
 
             <%for(Housing house : houses){%>
 
@@ -35,6 +37,10 @@
 
             </datalist>
         </div>  
+
+        <div>
+            
+        </div>
 
          <button onclick="window.location.href='/'">ir a inicio</button> 
 
