@@ -52,6 +52,8 @@ public class UserController {
 		
 		//Si la contraseña es correcta dejamos al usuario entrar a la pagina de inicio.
 		if (password.equals(truePassword)){
+
+
 			
 			//pasamos el nombre entero del usuario
 			String username = userService.getNamebyMail(mail);
@@ -60,7 +62,13 @@ public class UserController {
 			User user = userService.getUserByMail(mail);
 
 			//Definimos el modelo.
-			ModelAndView model = new ModelAndView("index");
+			ModelAndView model = new ModelAndView("hello");
+			Iterable<Housing> houses = (Iterable<Housing>) housingService.getHouses();
+
+			model.addObject("houses", houses);	
+			model.addObject("ok", true);
+			model.addObject("okay", true);
+
 			model.addObject("b", true);
 			model.addObject("username", username);
 			model.addObject("user", user);
@@ -75,6 +83,7 @@ public class UserController {
 			//Lanzamos pantalla de log in.
 			ModelAndView model = new ModelAndView("login");
 			model.addObject("b", false);
+			model.addObject("respuesta", true);
 			return model;	
 
 	
@@ -146,11 +155,54 @@ public class UserController {
 		Boolean b = false;
 		model.addObject("b", b);
 
-		//ArrayList<Housing> alHouses = (ArrayList<Housing>) housingService.getHouses();
+		Iterable<Housing> houses = (Iterable<Housing>) housingService.getHouses();
+
+		model.addObject("houses", houses);	
+
 
 		Boolean okay = true;
 		model.addObject("okay", okay);
 		return model;
+
+    }
+
+	/*
+	@GetMapping("/house")
+    public ModelAndView house() {
+		
+		ModelAndView model = new ModelAndView("hello");
+		model.addObject("okay", true);
+
+        return model;
+    }*/
+
+	@PostMapping("/house")
+    public ModelAndView houses(@RequestParam String location) {
+		Iterable<Housing> houses = (Iterable<Housing>) housingService.getHouses();
+		ModelAndView model = new ModelAndView("hello");
+		model.addObject("okay", false);
+
+		
+		if(location!=null){
+			
+			String dataHouse = (String) housingService.dataHouse(location);
+			String[] houseData = dataHouse.split(",");
+			System.out.println(houseData[3]);
+
+			String locationHouse = location;
+			model.addObject("houses", houses);
+			model.addObject("houseData", houseData);
+			model.addObject("locationHouse", locationHouse);
+			model.addObject("b", true);
+
+			return model;
+		}else{
+			model.addObject("b", false);
+
+			return model;
+		}
+
+		
 
     }
 

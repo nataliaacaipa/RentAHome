@@ -1,5 +1,7 @@
 package com.immune.rentahouse.service;
 
+import java.util.ArrayList;
+
 import com.immune.rentahouse.entity.Housing;
 import com.immune.rentahouse.repository.HousingRepository;
 
@@ -21,6 +23,11 @@ public class HousingService {
 
 		return housingRepository.save(housing);
 	}*/
+
+
+    public String dataHouse(String location){
+        return housingRepository.dataHouse(location);
+    }
 
     //prueba
 
