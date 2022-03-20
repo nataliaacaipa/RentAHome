@@ -19,26 +19,39 @@
         <title>Rent a house</title>
     </head>
     <body>
+        <%Boolean b = (Boolean) request.getAttribute("b");
+        User user = (User) request.getAttribute("user");
 
-        <p>Datos a rellenar</p>
-        <div class="divForm">
-            <form class="form" action = "/housing" method="POST">
-                <p>Número de teléfono</p>
-                <input type="tel" name="phonenum" pattern="[0-9]{9}" required="required">
-                <p>Ubicación</p>
-                <input type="text" name="location" required="required">
-                <p>Foto</p>
-                <input type="text" name="photo" required="required">
-                <br>
-                <p>Contraseña para confirmar</p>
-                <input type="password" name="password" required="required">
-                <br>
-                <input  type="submit" value="Añadir vivienda">
-            </form>
+        if(b){%> 
+            <p>Datos a rellenar</p>
+            <div class="divForm">
+                <form class="form" action = "/housing" method="POST">
+                    <p>Número de teléfono</p>
+                    <input type="tel" name="phonenum" pattern="[0-9]{9}" required="required">
+                    <p>Ubicación</p>
+                    <input type="text" name="location" required="required">
+                    <p>Foto</p>
+                    <input type="text" name="photo" required="required">
+                    <br>
+                    <p>Contraseña para confirmar</p>
+                    <input type="password" name="password" required="required">
+                    <br>
+                    <input  type="submit" value="Añadir vivienda">
+                </form>
 
-        </div>
+            </div>
 
-    
+        <%}else{%>
+            <%Boolean okay = (Boolean) request.getAttribute("okay");
+            if(okay){
+                Lessee newLessee = (Lessee) request.getAttribute("newLessee");
+                Housing newHousing = (Housing) request.getAttribute("newHousing");
+            %>
+                <p>Casa agregada</p> 
+            <%}else{%>
+                <p>Error</p> 
+            <%}%>
+        <%}%>
 
     </body>
 </html>

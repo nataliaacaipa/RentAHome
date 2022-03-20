@@ -171,40 +171,38 @@ public class UserController {
 	}
 
 	@PostMapping("/housing")
-    public ModelAndView newHouse(@RequestParam String phonenum, @RequestParam String location, @RequestParam String photo, @RequestParam String password) { //Nose si introducir por parametro el id_lessee
+    public ModelAndView newHouse(@RequestParam String password, Lessee lessee, Housing housing) { //Nose si introducir por parametro el id_lessee
         		
 		password = Security.encryptPassword(password);
 
 		User user = userService.getUserByPass(password);
 
+		ModelAndView model = new ModelAndView("index");
+
+		model.addObject("b", false);
+
 		try {
 
-			Lessee lessee = new Lessee();
 			lessee.setName(user.getName());
 			lessee.setLastname(user.getLastname());
 			lessee.setMail(user.getMail());
 			lessee.setPassword(password);
-			lessee.setPhonenum(phonenum);
 			lessee.setId_user(user.getId());
 
-			lesseeService.saveLessee(lessee);
+			Lessee newLessee = lesseeService.saveLessee(lessee);
 
+			housing.setId_lessee(newLessee.getId());
 
-			Housing housing = new Housing();
-			housing.setLocation(location);
-			housing.setPhoto(photo);
-			housing.setId_lessee(lessee.getId());
+			Housing newHousing = housingService.saveHousing(housing);
 
-			housingService.saveHousing(housing);
-
-			ModelAndView model = new ModelAndView("hello");
+			model.addObject("newLessee", newLessee);
+			model.addObject("newHousing", newHousing);
+			model.addObject("okay", true);
 			return model;
-
-
 
 			
 		} catch (Exception e) {
-			ModelAndView model = new ModelAndView("index");
+			model.addObject("okay", false);
 			return model;
 		}
 
