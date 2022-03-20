@@ -34,6 +34,9 @@ public class UserController {
     @GetMapping("/")
     public ModelAndView home() {
 
+		Iterable<Lessee> lessees = (Iterable<Lessee>) lesseeService.getLessees();
+		System.out.println(lessees);
+
         ModelAndView model = new ModelAndView("login");
         return model;
     }
@@ -42,6 +45,7 @@ public class UserController {
     public ModelAndView add() {
 
 		User user = userService.getUserByMail("usuario@gmail.com");
+		System.out.println(user.getId());
 
         ModelAndView model = new ModelAndView("index");
 		model.addObject("user", user);
@@ -76,8 +80,11 @@ public class UserController {
 			//Definimos el modelo.
 			ModelAndView model = new ModelAndView("hello");
 			Iterable<Housing> houses = (Iterable<Housing>) housingService.getHouses();
+			Iterable<Lessee> lessees = (Iterable<Lessee>) lesseeService.getLessees();
+
 
 			model.addObject("houses", houses);	
+			model.addObject("lessees", lessees);
 			model.addObject("ok", true);
 			model.addObject("okay", true);
 
@@ -149,32 +156,60 @@ public class UserController {
 		return model;
 	}
 
-	@PostMapping("/housing")
-    public ModelAndView newHouse(@RequestParam int phonenum, @RequestParam String location, @RequestParam String photo) { //Nose si introducir por parametro el id_lessee
-        ModelAndView model = new ModelAndView("hello");
+	@PostMapping("/houseform")
+	public ModelAndView houseform(){
+		
+		ModelAndView model = new ModelAndView("index");
+		User user = userService.getUserByMail("usuario@gmail.com");
 
-		Lessee lessee = new Lessee();
-		lessee.setPhonenum(phonenum);
-		model.addObject("lessee", lessee);
+		model.addObject("user", user);
+		model.addObject("b", true);
 
-		Housing housing = new Housing();
-		housing.setLocation(location);
-		housing.setPhoto(photo);
-		model.addObject("housing", housing);
-
-		//housingService.save(housing);
-
-		Boolean b = false;
-		model.addObject("b", b);
-
-		Iterable<Housing> houses = (Iterable<Housing>) housingService.getHouses();
-
-		model.addObject("houses", houses);	
-
-
-		Boolean okay = true;
-		model.addObject("okay", okay);
 		return model;
+	
+		
+	}
+
+	@PostMapping("/housing")
+    public ModelAndView newHouse(@RequestParam String phonenum, @RequestParam String location, @RequestParam String photo, @RequestParam String password) { //Nose si introducir por parametro el id_lessee
+        		
+		password = Security.encryptPassword(password);
+
+		User user = userService.getUserByPass(password);
+
+		try {
+
+			Lessee lessee = new Lessee();
+			lessee.setName(user.getName());
+			lessee.setLastname(user.getLastname());
+			lessee.setMail(user.getMail());
+			lessee.setPassword(password);
+			lessee.setPhonenum(phonenum);
+			lessee.setId_user(user.getId());
+
+			lesseeService.saveLessee(lessee);
+
+
+			Housing housing = new Housing();
+			housing.setLocation(location);
+			housing.setPhoto(photo);
+			housing.setId_lessee(lessee.getId());
+
+			housingService.saveHousing(housing);
+
+			ModelAndView model = new ModelAndView("hello");
+			return model;
+
+
+
+			
+		} catch (Exception e) {
+			ModelAndView model = new ModelAndView("index");
+			return model;
+		}
+
+	
+	
 
     }
 
@@ -191,18 +226,20 @@ public class UserController {
 	@PostMapping("/house")
     public ModelAndView houses(@RequestParam String location) {
 		Iterable<Housing> houses = (Iterable<Housing>) housingService.getHouses();
+		Iterable<Lessee> lessees = (Iterable<Lessee>) lesseeService.getLessees();
+
 		ModelAndView model = new ModelAndView("hello");
 		model.addObject("okay", false);
 
+		String dataHouse = (String) housingService.dataHouse(location);
+		String[] houseData = dataHouse.split(",");
 		
-		if(location!=null){
-			
-			String dataHouse = (String) housingService.dataHouse(location);
-			String[] houseData = dataHouse.split(",");
-			System.out.println(houseData[3]);
-
+		if(location.equals(houseData[2])){
+			System.out.println(location);
 			String locationHouse = location;
 			model.addObject("houses", houses);
+			model.addObject("lessees", lessees);
+			model.addObject("lesseeService", lesseeService);
 			model.addObject("houseData", houseData);
 			model.addObject("locationHouse", locationHouse);
 			model.addObject("b", true);

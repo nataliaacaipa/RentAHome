@@ -36,5 +36,9 @@ public class UserService {
 		return userRepository.getUserByMail(mail);
 	}
 
+	public User getUserByPass(String password){
+		return userRepository.getUserByPass(password);
+	}
+
 
 }

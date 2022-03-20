@@ -15,4 +15,12 @@ public class LesseeService {
 		return lesseeRepository.save(lessee);
 	}
 
+	public Iterable<Lessee> getLessees(){
+		return lesseeRepository.findAll();
+	}
+
+	public String getPhoneNum(int id_lessee){
+		return lesseeRepository.getPhone(id_lessee);
+	}
+
 }

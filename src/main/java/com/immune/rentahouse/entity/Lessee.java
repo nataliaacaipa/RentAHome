@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
     
 @Entity
-@Table(name = "user", schema = "rentahome")
+@Table(name = "lessee", schema = "rentahome")
 public class Lessee {
     @Id
     @Column(name = "id")
@@ -56,11 +56,11 @@ public class Lessee {
         this.password = password;
     }
 
-    public int getPhonenum() {
+    public String getPhonenum() {
         return phonenum;
     }
 
-    public void setPhonenum(int phonenum) {
+    public void setPhonenum(String phonenum) {
         this.phonenum = phonenum;
     }
 
@@ -69,7 +69,7 @@ public class Lessee {
     private String mail;
     private String password;
 
-    private int phonenum;
+    private String phonenum;
 
     public int getId_user() {
         return id_user;

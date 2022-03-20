@@ -23,6 +23,10 @@ public interface UserRepository extends JpaRepository<User, Integer>{
     @Query(value= "SELECT * FROM user WHERE mail=?1", nativeQuery = true)    
     public User getUserByMail(String mail);
 
+    //Devuelve el usuario dado su mail
+    @Query(value= "SELECT * FROM user WHERE mail=?1", nativeQuery = true)    
+    public User getUserByPass(String password);
+
 
 
 }

@@ -1,4 +1,8 @@
 <%@ page import = "com.immune.rentahouse.entity.Housing"%>
+<%@ page import = "com.immune.rentahouse.entity.Lessee"%>
+<%@ page import = "com.immune.rentahouse.service.LesseeService"%>
+
+
 
 <%@ page contentType="text/html; charset=UTF-8" %>
 
@@ -21,26 +25,54 @@
             <form action="/house" method="post" >
             <p>
 
-            <input type="search" name="location" list="listacasas">
+            <input type="search" name="location" list="listacasas" required="required">
 
             <input type="submit" value="Search"></p>
 
             </form>
         </div>
+
+        <div class="boton" >
+            <form action="/houseform" method="post" >
+            <input type="submit" value="añadir casa"></p>
+            </form>
+        </div>
+
         <%Iterable<Housing> houses = (Iterable<Housing>) request.getAttribute("houses");
+        Iterable<Lessee> lessees = (Iterable<Lessee>) request.getAttribute("lessees");
+        LesseeService lesseeService = (LesseeService) request.getAttribute("lesseeService");
         for(Housing house : houses){%>
 
-                <datalist id="listacasas">
+                    <datalist id="listacasas">
 
-                <option value="<%=house.getLocation()%>">
+                    <option value="<%=house.getLocation()%>">
 
-                </datalist>
+                    </datalist>
 
+                <div class="todoInicio" >
+                    <div  >
+                    <p></p>
 
-            <%}%> 
+                        <img class="imagenInicio" src="<%=house.getPhoto()%>"/>
+                     <p></p>
 
-        <button onclick="window.location.href='/index'">ir a añadir</button> 
+                    </div>
 
+                    <div class="infoInicio" >
+                        <div  >
+                            <h3><%=house.getLocation()%></h3>
+                        </div>
+                        <p></p>
+                        <div  >
+                            <h3><%=lesseeService.getPhoneNum(house.getId_lessee())%></h3>
+                        </div>
+                    </div>
+                </div>
+
+        <%}%> 
+
+        
+        
 
         <%}else{%>
 
@@ -48,7 +80,7 @@
             <form action="/house" method="post" >
             <p>
 
-            <input type="search" name="location" list="listacasas">
+            <input type="search" name="location" list="listacasas" required="required">
 
             <input type="submit" value="Search"></p>
 

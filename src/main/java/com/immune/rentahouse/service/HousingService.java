@@ -17,12 +17,11 @@ public class HousingService {
         return housingRepository.findAll();
     }
 
-    /*public Housing save(Housing housing){
 
     public Housing saveHousing(Housing housing){
 
 		return housingRepository.save(housing);
-	}*/
+	}
 
 
     public String dataHouse(String location){
