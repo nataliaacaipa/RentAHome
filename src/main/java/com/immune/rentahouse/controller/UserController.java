@@ -38,6 +38,18 @@ public class UserController {
         return model;
     }
 
+	@GetMapping("/index")
+    public ModelAndView add() {
+
+		User user = userService.getUserByMail("usuario@gmail.com");
+
+        ModelAndView model = new ModelAndView("index");
+		model.addObject("user", user);
+
+		model.addObject("b", true);
+        return model;
+    }
+
 
 	
 	//En cuanto un usuario trata de identificarse.

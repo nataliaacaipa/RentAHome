@@ -39,6 +39,9 @@
 
             <%}%> 
 
+        <button onclick="window.location.href='/index'">ir a añadir</button> 
+
+
         <%}else{%>
 
             <div class="search" >
