@@ -34,9 +34,6 @@ public class UserController {
     @GetMapping("/")
     public ModelAndView home() {
 
-		Iterable<Lessee> lessees = (Iterable<Lessee>) lesseeService.getLessees();
-		System.out.println(lessees);
-
         ModelAndView model = new ModelAndView("login");
         return model;
     }
