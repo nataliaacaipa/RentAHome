@@ -168,8 +168,8 @@ public class UserController {
 	}
 
 	@PostMapping("/housing")
-    public ModelAndView newHouse(@RequestParam String password, Lessee lessee, Housing housing) { //Nose si introducir por parametro el id_lessee
-        		
+    public ModelAndView newHouse(@RequestParam String password, Lessee lessee, Housing housing) { 	
+		        		
 		password = Security.encryptPassword(password);
 
 		User user = userService.getUserByPass(password);
