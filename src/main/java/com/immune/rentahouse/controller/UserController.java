@@ -168,8 +168,8 @@ public class UserController {
 	}
 
 	@PostMapping("/housing")
-    public ModelAndView newHouse(@RequestParam String password, Lessee lessee, Housing housing) { 	
-		        		
+    public ModelAndView newHouse(@RequestParam String phonenum, @RequestParam String location, @RequestParam String photo, @RequestParam String password) { 	
+
 		password = Security.encryptPassword(password);
 
 		User user = userService.getUserByPass(password);
@@ -180,14 +180,20 @@ public class UserController {
 
 		try {
 
+			Lessee lessee = new Lessee();
+
 			lessee.setName(user.getName());
 			lessee.setLastname(user.getLastname());
 			lessee.setMail(user.getMail());
 			lessee.setPassword(password);
+			lessee.setPhonenum(phonenum);
 			lessee.setId_user(user.getId());
 
 			Lessee newLessee = lesseeService.saveLessee(lessee);
 
+			Housing housing = new Housing();
+			housing.setLocation(location);
+			housing.setPhoto(photo);
 			housing.setId_lessee(newLessee.getId());
 
 			Housing newHousing = housingService.saveHousing(housing);
