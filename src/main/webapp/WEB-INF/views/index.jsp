@@ -53,7 +53,7 @@
 
             <%}else{%>
                 <p>Error</p> 
-                <button onclick="window.location.href='/hello'">Intentarlo nuevamente</button> 
+                <button onclick="window.location.href='/'">Volver a inicio</button> 
 
             <%}%>
         <%}%>

@@ -175,6 +175,8 @@ public class UserController {
 
 		password = Security.encryptPassword(password); //la que pone el usuario
 
+		User user = userService.getUserByPass(password);
+
 		ModelAndView model = new ModelAndView("index");
 
 		model.addObject("b", false);
@@ -183,8 +185,6 @@ public class UserController {
 		try {
 
 			Lessee lessee = new Lessee();
-
-			User user = userService.getUserByPass(password);
 
 			lessee.setName(user.getName());
 			lessee.setLastname(user.getLastname());
@@ -228,6 +228,7 @@ public class UserController {
 
         return model;
     }
+
 
 
 
