@@ -14,4 +14,7 @@ public interface LesseeRepository extends JpaRepository<Lessee, Integer>{
     @Query(value = "SELECT l.phonenum  FROM lessee l, housing h WHERE l.id = h.id_lessee AND h.id_lessee=?1", nativeQuery = true)
     public String getPhone(int id_lessee);
 
+    @Query(value = "SELECT concat_ws(' ', l.name, l.lastname)  FROM lessee l, housing h WHERE l.id = h.id_lessee AND h.id_lessee=?1", nativeQuery = true)
+    public String getNameLastName(int id_lessee);
+
 }

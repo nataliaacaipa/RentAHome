@@ -73,6 +73,8 @@ public class UserController {
 
 			//recogemos el usuario 
 			User user = userService.getUserByMail(mail);
+			
+			System.out.println(user.getId());
 
 			//Definimos el modelo.
 			ModelAndView model = new ModelAndView("hello");
@@ -80,6 +82,7 @@ public class UserController {
 			Iterable<Lessee> lessees = (Iterable<Lessee>) lesseeService.getLessees();
 
 
+			model.addObject("userID", user.getId());
 			model.addObject("houses", houses);	
 			model.addObject("lessees", lessees);
 			model.addObject("ok", true);
@@ -170,17 +173,18 @@ public class UserController {
 	@PostMapping("/housing")
     public ModelAndView newHouse(@RequestParam String phonenum, @RequestParam String location, @RequestParam String photo, @RequestParam String password) { 	
 
-		password = Security.encryptPassword(password);
-
-		User user = userService.getUserByPass(password);
+		password = Security.encryptPassword(password); //la que pone el usuario
 
 		ModelAndView model = new ModelAndView("index");
 
 		model.addObject("b", false);
+	
 
 		try {
 
 			Lessee lessee = new Lessee();
+
+			User user = userService.getUserByPass(password);
 
 			lessee.setName(user.getName());
 			lessee.setLastname(user.getLastname());
@@ -201,10 +205,11 @@ public class UserController {
 			model.addObject("newLessee", newLessee);
 			model.addObject("newHousing", newHousing);
 			model.addObject("okay", true);
+
 			return model;
 
 			
-		} catch (Exception e) {
+		} catch(Exception e) {
 			model.addObject("okay", false);
 			return model;
 		}
@@ -214,7 +219,7 @@ public class UserController {
 
     }
 
-	/*
+	
 	@GetMapping("/house")
     public ModelAndView house() {
 		
@@ -222,56 +227,7 @@ public class UserController {
 		model.addObject("okay", true);
 
         return model;
-    }*/
-
-	@PostMapping("/house")
-    public ModelAndView houses(@RequestParam String location) {
-		Iterable<Housing> houses = (Iterable<Housing>) housingService.getHouses();
-		Iterable<Lessee> lessees = (Iterable<Lessee>) lesseeService.getLessees();
-
-		ModelAndView model = new ModelAndView("hello");
-		model.addObject("okay", false);
-
-		String dataHouse = (String) housingService.dataHouse(location);
-		String[] houseData = dataHouse.split(",");
-		
-		if(location.equals(houseData[2])){
-			System.out.println(location);
-			String locationHouse = location;
-			model.addObject("houses", houses);
-			model.addObject("lessees", lessees);
-			model.addObject("lesseeService", lesseeService);
-			model.addObject("houseData", houseData);
-			model.addObject("locationHouse", locationHouse);
-			model.addObject("b", true);
-
-			return model;
-		}else{
-			model.addObject("b", false);
-
-			return model;
-		}
-
-		
-
     }
-
-	//Cambioo
-	//Cmabio2
-
-
-	/*@PostMapping("/")
-    public ModelAndView newLess(@RequestParam int phonenum) { //Nose si introducir por parametro el id_lessee
-        ModelAndView model = new ModelAndView("hello");
-
-		Boolean b = false;
-		model.addObject("b", b);
-
-		Boolean okay = true;
-		model.addObject("okay", okay);
-		return model;
-
-    }*/
 
 
 

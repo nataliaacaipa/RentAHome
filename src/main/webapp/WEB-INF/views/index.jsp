@@ -21,11 +21,12 @@
     <body>
         <%Boolean b = (Boolean) request.getAttribute("b");
         User user = (User) request.getAttribute("user");
-
+ 
         if(b){%> 
             <p>Datos a rellenar</p>
             <div class="divForm">
                 <form class="form" action = "/housing" method="POST">
+
                     <p>Número de teléfono</p>
                     <input type="tel" name="phonenum" pattern="[0-9]{9}" required="required">
                     <p>Ubicación</p>
@@ -48,8 +49,12 @@
                 Housing newHousing = (Housing) request.getAttribute("newHousing");
             %>
                 <p>Casa agregada</p> 
+                <button onclick="window.location.href='/'">Volver a inicio</button> 
+
             <%}else{%>
                 <p>Error</p> 
+                <button onclick="window.location.href='/hello'">Intentarlo nuevamente</button> 
+
             <%}%>
         <%}%>
 

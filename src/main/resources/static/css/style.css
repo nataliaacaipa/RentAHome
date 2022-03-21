@@ -90,12 +90,13 @@ input:invalid:focus {
 }
 
 .todo {
-    width: 70%;
     margin: auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
     align-content: center;
+    flex-direction: column;
+
 
 }
 
@@ -103,15 +104,17 @@ input:invalid:focus {
     width: 100%;
 }
 
+.info{
+    margin-top: 2em;
+}
+
 .foto{
-    padding-left: 15em;
     width: 60em;
     height: 16em;
 }
 
 
 .imagen{
-    width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: center center;
@@ -139,9 +142,6 @@ input:invalid:focus {
 
 }
 
-.info{
-    padding-right: 10em;
-}
 
 .boton{
     width: 10em;

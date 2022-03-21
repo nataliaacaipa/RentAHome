@@ -23,4 +23,8 @@ public class LesseeService {
 		return lesseeRepository.getPhone(id_lessee);
 	}
 
+	public String getNameLastName(int id_lessee){
+		return lesseeRepository.getNameLastName(id_lessee);
+	}
+
 }
